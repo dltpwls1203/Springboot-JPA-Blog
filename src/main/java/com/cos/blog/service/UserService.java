@@ -44,7 +44,7 @@ public class UserService {
 		persistance.setPassword(encPassword);
 		persistance.setEmail(user.getEmail());
 		// 회원수저 함수 종료 시 = 서비스 종료 = 트랜잭션 종료 = commit이 자동으로 됨
-		// 영속화 된 persistance 객체의 변화가 감지되면 더티체킹이 되어 update문을 날려줌.
+		// 영속화 된 persistance 객체의 변화가 감지되면 더티체킹이 되어 update문을 날려줌
 	}
 	/*
 		@Transactional(readOnly = true) // Select할 때 트랜잭션 시작, 서비스 종료 시에 트랜잭션 종료 (정합성 유지)
