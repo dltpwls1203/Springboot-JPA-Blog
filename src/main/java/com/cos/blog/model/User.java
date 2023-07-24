@@ -30,7 +30,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
 	private int id; // 시퀀스, auto_increment
 	
-	@Column(nullable = false, length = 30, unique=true)
+	@Column(nullable = false, length = 100, unique=true)
 	private String username; // 아이디
 	
 	@Column(nullable = false, length = 100) // 123456 => 해쉬로 변경(비밀번호 암호화)
@@ -47,4 +47,6 @@ public class User {
 	// 하지만 Enum을 쓰면 3개 값 중 하나를 넣을 수 있도록 도메인 설정 할 수 있음
 	@CreationTimestamp // 시간 자동 입력
 	private Timestamp createDate;
+	
+	private String oauth; // kakao, google
 }
