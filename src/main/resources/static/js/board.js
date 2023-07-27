@@ -9,13 +9,16 @@ let index = {
 		$("#btn-update").on("click", ()=>{ 
 			this.update();
 		});
+		$("#btn-reply-save").on("click", ()=>{ 
+			this.replySave();
+		});
 	},
 	
 	save:function(){
 		//alert('user의 save함수 호출됨');
 		let data = {
 			title: $("#title").val(),
-			content: $("#content").val(),
+			content: $("#content").val()
 		};
 		
 		$.ajax({
@@ -75,6 +78,33 @@ let index = {
 			alert("글수정이 완료되었습니다.");
 			// console.log(resp);
 			location.href="/";
+		}).fail(function(error){
+			// 요청 실패
+			alert(JSON.stringify(error));
+		}); 
+	},
+	
+	replySave:function(){
+		
+		let data = {
+			content: $("#reply-content").val()
+		};
+		
+		let boardId = $("#boardId").val();
+		
+		console.log(boardId);
+		
+		$.ajax({
+			type: "POST",
+			url: `/api/board/${boardId}/reply`,
+			data: JSON.stringify(data), 
+			contentType: "application/json; charset=utf-8", 
+			dataType: "json"  
+		}).done(function(resp){
+			// 요청 성공
+			alert("댓글쓰기가 완료되었습니다.");
+			// console.log(resp);
+			location.href=`/board/${boardId}`;
 		}).fail(function(error){
 			// 요청 실패
 			alert(JSON.stringify(error));
