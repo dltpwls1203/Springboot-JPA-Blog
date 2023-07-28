@@ -3,11 +3,11 @@ let index = {
 		$("#btn-save").on("click", ()=>{ // function() {}, ()=>{} this를 바인딩하기 위해서
 			this.save();
 		});
-		$("#btn-update").on("click", ()=>{ // function() {}, ()=>{} this를 바인딩하기 위해서
+		$("#btn-update").on("click", ()=>{ 
 			this.update();
 		});
 		/*
-		$("#btn-login").on("click", ()=>{ // function() {}, ()=>{} this를 바인딩하기 위해서
+		$("#btn-login").on("click", ()=>{ 
 			this.login();
 		});
 		*/
@@ -60,10 +60,14 @@ let index = {
 			contentType: "application/json; charset=utf-8", 
 			dataType: "json" 
 		}).done(function(resp){
+			if(resp.status === 500) {
+				alert("회원가입에 실패하였습니다")
+			} else {
 			// 요청 성공
 			alert("회원수정이 완료되었습니다.");
 			// console.log(resp);
 			location.href="/";
+			}
 		}).fail(function(error){
 			// 요청 실패
 			alert(JSON.stringify(error));
